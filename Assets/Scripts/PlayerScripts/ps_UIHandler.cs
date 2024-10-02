@@ -5,38 +5,53 @@ using UnityEngine.UI;
 
 public class ps_UIHandler : MonoBehaviour
 {
-    [Header("Statistics")]
-    [SerializeField] float maxHealth = 100f;
-    [SerializeField] float minHealth = 0f;
-
     //Vars
-    private float _fMount = 0f;
-    private float _health = 100f;
+    private float _maxHealth     = 100f;
+    private float _fMount        = 100f;
+    private float _health        = 100f;
 
     [Space]
     [Header("Object References")]
     [SerializeField] Canvas bar_Health, bar_Ammo;
-    
 
-    private void AddValue(Image bar, float val)
+
+    #region METHODS
+    private void addHealth(Image bar, float val)
     {
-        if (val > maxHealth) 
+        if (val > _maxHealth) 
         {
-            val = maxHealth;
+            val = _maxHealth;
         }
         _health += val;
-        _fMount = maxHealth / _health;
+        _fMount = _maxHealth / _health;
         bar.fillAmount = _fMount;
     }
-
-    private void subValue(Image bar, float val)
+    private void setHealth(Image bar, float val)
     {
-        if (val < minHealth)
+        if (val > _maxHealth)
+        {
+            _health = _maxHealth;
+        }
+        if (val < 0)
+        {
+            _health = 0;
+        }
+        _fMount = _maxHealth / _health;
+        bar.fillAmount = _fMount;
+    }
+    private void subHealth(Image bar, float val)
+    {
+        if (val < 0)
         {
             val = 0;
         }
         _health -= val;
-        _fMount = maxHealth / _health;
+        _fMount = _maxHealth / _health;
         bar.fillAmount = _fMount;
     }
+    #endregion
+    #region SETTERS AND GETTERS
+    public float MaxHealth {  get { return _maxHealth; } set { _maxHealth = value; } }
+    public float Health { get { return _health; } set { _health = value; } }
+    #endregion
 }
