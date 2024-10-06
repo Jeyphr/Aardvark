@@ -6,52 +6,90 @@ using UnityEngine.UI;
 public class ps_UIHandler : MonoBehaviour
 {
     //Vars
-    private float _maxHealth     = 100f;
-    private float _fMount        = 100f;
-    private float _health        = 100f;
+    private float _visMaxHealth     = 100f;
+    private float _visHealth        = 100f;
+
+    private int _visMaxAmmo = 0;
+    private int _visAmmo = 0;
+
+    private int _visPoints = 0;
+    private int _visRound = 0;
 
     [Space]
     [Header("Object References")]
-    [SerializeField] Canvas bar_Health, bar_Ammo;
+    [SerializeField] Image bar_Health, bar_Ammo;
+    [SerializeField] TMPro.TMP_Text hText, aText, rText, pText;
 
+    
 
-    #region METHODS
-    private void addHealth(Image bar, float val)
+    public void Awake()
     {
-        if (val > _maxHealth) 
         {
-            val = _maxHealth;
+            updateUI();
         }
-        _health += val;
-        _fMount = _maxHealth / _health;
-        bar.fillAmount = _fMount;
     }
+    public void updateUI()
+    {
+        updateHealth();
+        updateAmmo();
+        updateRounds();
+        updatePointss();
+        updatePerks();
+    }
+
+    #region UPDATING STATEMENTS
+    private void updateHealth()
+    {
+        setHealth(bar_Health, _visHealth);
+    }
+    private void updateAmmo()
+    {
+        setAmmo(bar_Ammo, _visAmmo);
+    }
+    private void updateRounds()
+    {
+        setRound(_visRound);
+    }
+    private void updatePointss()
+    {
+        setPoints(_visPoints);
+    }
+    private void updatePerks()
+    {
+        Debug.Log("Updating Perks!");
+    }
+    #endregion
+    #region STAT SETTERS
     private void setHealth(Image bar, float val)
     {
-        if (val > _maxHealth)
-        {
-            _health = _maxHealth;
-        }
-        if (val < 0)
-        {
-            _health = 0;
-        }
-        _fMount = _maxHealth / _health;
-        bar.fillAmount = _fMount;
+        _visHealth = val;
+        bar.fillAmount = _visHealth / 100;
+        hText.text = _visHealth.ToString();
     }
-    private void subHealth(Image bar, float val)
+    private void setAmmo(Image bar, int val)
     {
-        if (val < 0)
-        {
-            val = 0;
-        }
-        _health -= val;
-        _fMount = _maxHealth / _health;
-        bar.fillAmount = _fMount;
+        _visAmmo = val;
+        bar.fillAmount = _visAmmo / 100;
+        aText.text = _visAmmo.ToString();
+    }
+    private void setRound(int val)
+    {
+        _visRound = val;
+        rText.text = "Round: " + _visRound.ToString();
+    }
+    private void setPoints(int val)
+    {
+        _visPoints = val;
+        pText.text = "$" + _visPoints.ToString();
     }
     #endregion
     #region SETTERS AND GETTERS
-    public float MaxHealth {  get { return _maxHealth; } set { _maxHealth = value; } }
-    public float Health { get { return _health; } set { _health = value; } }
+    public float VisMaxHealth { get => _visMaxHealth; set => _visMaxHealth = value; }
+    public float VisHealth { get => _visHealth; set => _visHealth = value; }
+    public int VisMaxAmmo { get => _visMaxAmmo; set => _visMaxAmmo = value; }
+    public int VisAmmo { get => _visAmmo; set => _visAmmo = value; }
+    public int VisPoints { get => _visPoints; set => _visPoints = value; }
+    public int VisRound { get => _visRound; set => _visRound = value; }
+
     #endregion
 }

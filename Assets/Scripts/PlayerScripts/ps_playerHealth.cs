@@ -2,14 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ui_HealthBar : MonoBehaviour
+public class ps_playerHealth : MonoBehaviour
 {
-    // VARS
-    private float _health;
-    private float _maxHealth;
-
-    // OBJECT REFERENCES
-    [SerializeField] public GameObject HealthBar;
+    // Start is called before the first frame update
     void Start()
     {
         

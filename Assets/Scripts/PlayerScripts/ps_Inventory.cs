@@ -2,24 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[DisallowMultipleComponent]
 public class ps_Inventory : MonoBehaviour
 {
-    [Header("Statistics")]
-    [SerializeField] public Transform       swapSpeed;
-    [SerializeField] public GameObject[]    arr_WeaponSlots;
+    [SerializeField] private enm_GunType _gun;
+    [SerializeField] private Transform _gunHolder;
+    [SerializeField] private List<sob_Gun> lst_guns;
 
-    [Space]
-    [Header("Object References")]
-    [SerializeField] public Transform holdPosition;
-
-    //VARS
-    private bool        _isEmptyHanded;
-    private GameObject  _selectedWeapon;
+    [Header("Runtime Filled")]
+    public sob_Gun heldGun;
 
 
-    //---------------------------------------------------------------
-    private void SetWeapon()
+    private void Start()
     {
+        sob_Gun gun = lst_guns.Find(gun => gun.gunType == _gun);
+        if (gun == null)
+        {
+            Debug.LogError($"No GSO found for GunType: {gun}");
+            return;
+        }
 
+        heldGun = gun;
+        gun.Spawn(_gunHolder, this);
     }
 }

@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public interface gs_IDamagable
+public enum enm_GunType
 {
-    void takeDamage(float val);
+    Pistol,
+    AssaultRifle
 }

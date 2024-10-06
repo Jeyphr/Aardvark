@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 
+[DisallowMultipleComponent]
 public class ps_PlayerMovement : MonoBehaviour
 {
     //lOCALVARS
@@ -16,6 +17,7 @@ public class ps_PlayerMovement : MonoBehaviour
     [SerializeField] public float speed = 10f;
     [SerializeField] public float jumpPower = 2f;
     [SerializeField] private float gravity = -9.82f;
+    [SerializeField] private ps_Inventory inventory;
 
     //MULTIPLIERS
     private float _mult_speed    = 1f;
@@ -51,6 +53,7 @@ public class ps_PlayerMovement : MonoBehaviour
         hand_Inputs();
         hand_Jump();
         hand_Walk();
+        hand_Shooting();
     }
 
     //Functions
@@ -114,6 +117,16 @@ public class ps_PlayerMovement : MonoBehaviour
     private bool IsBonking()
     {
         return isBonking = Physics.CheckSphere(bonkCheck.position, bonkDistance, groundLayerMask);
+    }
+    #endregion
+
+    #region SHOOTING
+    private void hand_Shooting()
+    {
+        if (Input.GetButton("Fire1") && inventory.heldGun != null)
+        {
+            inventory.heldGun.Shoot();
+        }
     }
     #endregion
 
