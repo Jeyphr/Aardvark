@@ -15,6 +15,7 @@ public class sob_Gun : ScriptableObject
     [Header("Statistics")]
     [SerializeField] public enm_GunType gunType;
     [SerializeField] public string gunName;
+    [SerializeField] public int ammo = 10;
     [SerializeField] public Vector3 position;
     [SerializeField] public Vector3 rotation;
 

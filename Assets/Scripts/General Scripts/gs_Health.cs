@@ -15,12 +15,35 @@ public class gs_Health : MonoBehaviour, gs_IDamagable
     public void takeDamage(float val)
     {
         _health -= val;
-        if (val > _maxHealth || (_health - val < 0))
+        if (_health - val < 0 || val > _maxHealth)
         {
             _health = 0;
         }
         uiHandler.VisHealth = _health;
         uiHandler.updateUI();
+    }
+
+    public void heal(float val)
+    {
+        _health += val;
+        if (_health + val > _maxHealth || val > _maxHealth)
+        {
+            _health = _maxHealth;
+        }
+        uiHandler.VisHealth = _health;
+        uiHandler.updateUI();
+    }
+
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            takeDamage(8f);
+        }
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            heal(8f);
+        }
     }
 
     #region GETTERS AND SETTERS

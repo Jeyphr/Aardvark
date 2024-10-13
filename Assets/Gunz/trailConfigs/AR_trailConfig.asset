@@ -10,38 +10,38 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a91365c31a4bf54cbeb0e8b10bc80ef, type: 3}
-  m_Name: trail_devpistol
+  m_Name: AR_trailConfig
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: 764e90c83c1538c4caabc2426f378c4e, type: 2}
   widthCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
-      value: 0.2
-      inSlope: 0.0003477632
-      outSlope: 0.0003477632
+      time: -0.007525269
+      value: 0.14904694
+      inSlope: -0.0004435363
+      outSlope: -0.0004435363
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.33666667
+      outWeight: 0.93482447
     - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: -0.0010392313
-      outSlope: -0.0010392313
+      time: 0.8492864
+      value: -0.000047171372
+      inSlope: 0.0045998497
+      outSlope: 0.0045998497
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.4233333
+      inWeight: 0.82
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  lifespan: 0.1
+  lifespan: 0.2
   minVertexDist: 0.1
   color:
     serializedVersion: 2
-    key0: {r: 1, g: 0.58705425, b: 0, a: 1}
+    key0: {r: 1, g: 0.7918037, b: 0, a: 1}
     key1: {r: 1, g: 1, b: 1, a: 0}
     key2: {r: 0, g: 0, b: 0, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}

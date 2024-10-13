@@ -126,6 +126,7 @@ public class ps_PlayerMovement : MonoBehaviour
         if (Input.GetButton("Fire1") && inventory.heldGun != null)
         {
             inventory.heldGun.Shoot();
+            
         }
     }
     #endregion
