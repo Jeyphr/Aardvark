@@ -8688,6 +8688,38 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!1 &1642453545 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3220454812482091653, guid: e758b221eb746ab4da7dd37d414f4a4c, type: 3}
+  m_PrefabInstance: {fileID: 1741503347}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1642453548 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4075868665475094363, guid: e758b221eb746ab4da7dd37d414f4a4c, type: 3}
+  m_PrefabInstance: {fileID: 1741503347}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1642453545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98a5accbe42e3e14c93317773afa4fa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1642453551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1642453545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf775cb8a494a9843942d802a76891f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health: 100
+  _maxHealth: 100
+  _invuln: 1
+  _UIhandler: {fileID: 1642453548}
 --- !u!1 &1672306204
 GameObject:
   m_ObjectHideFlags: 0
@@ -9085,6 +9117,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3726730638814550903, guid: e758b221eb746ab4da7dd37d414f4a4c, type: 3}
+      propertyPath: heldGun
+      value: 
+      objectReference: {fileID: 11400000, guid: 651396042c5b706468094992d3798db7, type: 2}
+    - target: {fileID: 3726730638814550903, guid: e758b221eb746ab4da7dd37d414f4a4c, type: 3}
+      propertyPath: lst_guns.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3726730638814550903, guid: e758b221eb746ab4da7dd37d414f4a4c, type: 3}
+      propertyPath: lst_guns.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 651396042c5b706468094992d3798db7, type: 2}
+    - target: {fileID: 3726730638814550903, guid: e758b221eb746ab4da7dd37d414f4a4c, type: 3}
+      propertyPath: lst_guns.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 40cc35418838da24ea27227d5fd4c6a6, type: 2}
     - target: {fileID: 4885287916780892391, guid: e758b221eb746ab4da7dd37d414f4a4c, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -9189,10 +9237,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 923299870979818687, guid: e758b221eb746ab4da7dd37d414f4a4c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3220454812482091653, guid: e758b221eb746ab4da7dd37d414f4a4c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1642453551}
   m_SourcePrefab: {fileID: 100100000, guid: e758b221eb746ab4da7dd37d414f4a4c, type: 3}
 --- !u!43 &1761474337
 Mesh:

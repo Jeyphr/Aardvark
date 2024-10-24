@@ -89,7 +89,7 @@ public class sob_Gun : ScriptableObject
         }
         */
 
-        if((Time.time > shootConfig.fireRate + _lastShootTime) && ammo > 0)
+        if((Time.time > shootConfig.fireRate + _lastShootTime))
         {
             _lastShootTime = Time.time;
             Debug.Log("Greater Number" + Time.time +"\tLesser Number" + _lastShootTime + shootConfig.fireRate);
@@ -135,7 +135,7 @@ public class sob_Gun : ScriptableObject
         }
         else if (!wantsToShoot && _lastFrameWantedToShoot)
         {
-            _lastShootTime += Time.time;
+            //_lastShootTime += Time.time;
             _lastFrameWantedToShoot = false;
         }
     }

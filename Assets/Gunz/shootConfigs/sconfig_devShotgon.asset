@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 14d7ac1ef5347eb4bbe6599dcdc619ae, type: 3}
-  m_Name: dev_pistol_shootConfig
+  m_Name: sconfig_devShotgon
   m_EditorClassIdentifier: 
   hitMask:
     serializedVersion: 2
-    m_Bits: 9
-  fireRate: 0.25
-  recoilRecoveryTime: 0.2
+    m_Bits: 0
+  fireRate: 1
+  recoilRecoveryTime: 0.25
   maxSpreadTime: 1
-  bloom: {x: 0.5, y: 0.5, z: 0.5}
-  enm_recoilType: 0
+  bloom: {x: 0, y: 1, z: 0}
+  enm_recoilType: 1
