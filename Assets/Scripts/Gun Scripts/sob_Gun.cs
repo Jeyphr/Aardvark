@@ -75,7 +75,8 @@ public class sob_Gun : ScriptableObject
 
     public void Shoot()
     {
-        
+     
+        /*
         if (Time.time - _lastShootTime - shootConfig.fireRate > Time.deltaTime)
         {
             float lastDuration = Mathf.Clamp(
@@ -86,7 +87,7 @@ public class sob_Gun : ScriptableObject
             float lerpTime = (shootConfig.recoilRecoveryTime - (Time.time - _stopShootingTime) / shootConfig.recoilRecoveryTime);
             _initClickTime = Time.time - Mathf.Lerp(0, lastDuration, Mathf.Clamp01(lerpTime));
         }
-        
+        */
 
         if((Time.time > shootConfig.fireRate + _lastShootTime) && ammo > 0)
         {

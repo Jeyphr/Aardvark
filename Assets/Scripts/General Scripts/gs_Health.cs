@@ -5,12 +5,10 @@ using UnityEngine;
 public class gs_Health : MonoBehaviour, gs_IDamagable
 {
     [Header("Object References")]
-    [SerializeField] ps_UIHandler uiHandler;
 
     //Vars
     private float _health = 100f;
     private float _maxHealth = 100f;
-    private float _iFrames = 10f;
 
     public void takeDamage(float val)
     {
@@ -19,8 +17,6 @@ public class gs_Health : MonoBehaviour, gs_IDamagable
         {
             _health = 0;
         }
-        uiHandler.VisHealth = _health;
-        uiHandler.updateUI();
     }
 
     public void heal(float val)
@@ -30,8 +26,6 @@ public class gs_Health : MonoBehaviour, gs_IDamagable
         {
             _health = _maxHealth;
         }
-        uiHandler.VisHealth = _health;
-        uiHandler.updateUI();
     }
 
     public void Update()
