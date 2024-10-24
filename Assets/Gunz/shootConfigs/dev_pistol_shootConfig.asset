@@ -15,5 +15,8 @@ MonoBehaviour:
   hitMask:
     serializedVersion: 2
     m_Bits: 9
-  bloom: {x: 0.05, y: 0.05, z: 0.05}
-  fireRate: 0.33
+  fireRate: 0.1
+  recoilRecoveryTime: 1
+  maxSpreadTime: 1
+  bloom: {x: 0.5, y: 0.5, z: 0.5}
+  enm_recoilType: 1

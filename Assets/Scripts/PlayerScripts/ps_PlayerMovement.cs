@@ -123,10 +123,9 @@ public class ps_PlayerMovement : MonoBehaviour
     #region SHOOTING
     private void hand_Shooting()
     {
-        if (Input.GetButton("Fire1") && inventory.heldGun != null)
+        if (inventory.heldGun != null)
         {
-            inventory.heldGun.Shoot();
-            
+            inventory.heldGun.Tick(Input.GetKey(KeyCode.Mouse0));   
         }
     }
     #endregion

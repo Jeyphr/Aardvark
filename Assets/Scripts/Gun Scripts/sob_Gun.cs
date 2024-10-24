@@ -11,18 +11,26 @@ public class sob_Gun : ScriptableObject
     [SerializeField] public GameObject modelPrefab;
     [SerializeField] public sob_ShootConfig shootConfig;
     [SerializeField] public sob_TrailConfig trailConfig;
+    //[SerializeField] public ps_UIHandler uiHandler;
 
     [Header("Statistics")]
     [SerializeField] public enm_GunType gunType;
     [SerializeField] public string gunName;
-    [SerializeField] public int ammo = 10;
     [SerializeField] public Vector3 position;
     [SerializeField] public Vector3 rotation;
+
+    [Header("Ammo")]
+    [SerializeField] public float damage = 10f;
+    [SerializeField] public int ammo = 100;
+    [SerializeField] public int maxammo = 100;
 
     //Private Vars
     private MonoBehaviour _activeMono;
     private GameObject _model;
     private float _lastShootTime;
+    private float _initClickTime;
+    private float _stopShootingTime;
+    private bool _lastFrameWantedToShoot;
     private ParticleSystem _shootSystem;
     private ObjectPool <TrailRenderer> _trailPool;
 
@@ -33,6 +41,8 @@ public class sob_Gun : ScriptableObject
         this._activeMono = ActiveMonoBehavior;
         _lastShootTime = 0;
         _trailPool = new ObjectPool<TrailRenderer>(CreateTrail);
+
+        //UI BULLSHIT
 
         //add gunmodel
         _model = Instantiate(modelPrefab);
@@ -65,17 +75,29 @@ public class sob_Gun : ScriptableObject
 
     public void Shoot()
     {
-        if(Time.time > shootConfig.fireRate + _lastShootTime)
+        
+        if (Time.time - _lastShootTime - shootConfig.fireRate > Time.deltaTime)
+        {
+            float lastDuration = Mathf.Clamp(
+                0,
+                (_stopShootingTime - _initClickTime),
+                (shootConfig.maxSpreadTime));
+
+            float lerpTime = (shootConfig.recoilRecoveryTime - (Time.time - _stopShootingTime) / shootConfig.recoilRecoveryTime);
+            _initClickTime = Time.time - Mathf.Lerp(0, lastDuration, Mathf.Clamp01(lerpTime));
+        }
+        
+
+        if((Time.time > shootConfig.fireRate + _lastShootTime) && ammo > 0)
         {
             _lastShootTime = Time.time;
+            Debug.Log("Greater Number" + Time.time +"\tLesser Number" + _lastShootTime + shootConfig.fireRate);
             _shootSystem.Play();
+            ammo--;
 
             //bloom
-            Vector3 shootDirection = _shootSystem.transform.forward + new Vector3
-                (Random.Range(-shootConfig.bloom.x,shootConfig.bloom.x),
-                Random.Range(-shootConfig.bloom.y, shootConfig.bloom.y),
-                Random.Range(-shootConfig.bloom.z, shootConfig.bloom.z));
-            shootDirection.Normalize();
+            Vector3 spreadAmount = shootConfig.getSpread();//Time.time - _initClickTime);
+            Vector3 shootDirection = _model.transform.parent.forward + spreadAmount;
 
             //where the magic happens
             if(Physics.Raycast(
@@ -100,6 +122,20 @@ public class sob_Gun : ScriptableObject
                     )
                 );
             }
+        }
+    }
+
+    public void Tick(bool wantsToShoot)
+    {
+        if (wantsToShoot)
+        {
+            _lastFrameWantedToShoot = true;
+            Shoot();
+        }
+        else if (!wantsToShoot && _lastFrameWantedToShoot)
+        {
+            _lastShootTime += Time.time;
+            _lastFrameWantedToShoot = false;
         }
     }
 

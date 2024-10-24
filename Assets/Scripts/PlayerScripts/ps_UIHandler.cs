@@ -49,14 +49,12 @@ public class ps_UIHandler : MonoBehaviour
             bar_Health.material = mat_critical;
             hText.color = mat_critical.color;
             hText.fontSize = 20;
-            hText.alpha = 1f;
         }
         else
         {
             bar_Health.material = mat_normal;
             hText.color = mat_normal.color;
             hText.fontSize = 10;
-            hText.alpha = 0.5f;
         }
     }
     private void updateAmmo()

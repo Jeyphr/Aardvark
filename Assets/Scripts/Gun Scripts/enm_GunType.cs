@@ -4,6 +4,8 @@ using UnityEngine;
 
 public enum enm_GunType
 {
-    Pistol,
-    AssaultRifle
+    hit_kinetic,
+    hit_laser,
+    pro_kinetic,
+    pro_laser
 }

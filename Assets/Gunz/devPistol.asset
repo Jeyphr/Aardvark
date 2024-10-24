@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 984735bc2ede3e44e8b1830a893a5a17, type: 3}
   m_Name: devPistol
   m_EditorClassIdentifier: 
-  modelPrefab: {fileID: 637878701792473441, guid: 917e955007c41eb44964e246293924c1, type: 3}
+  modelPrefab: {fileID: 4478720147300340467, guid: d39d43f955d0eb348b4284382e31d0fb, type: 3}
   shootConfig: {fileID: 11400000, guid: d2e92f43b12ea5f4d848f8d945db68e9, type: 2}
   trailConfig: {fileID: 11400000, guid: 1c0acbe71cb6b174690864df30b33ae4, type: 2}
   gunType: 0
+  recoilType: 1
   gunName: Zapper
+  ammo: 10
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0}
