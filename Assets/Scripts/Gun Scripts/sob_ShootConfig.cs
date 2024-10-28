@@ -32,7 +32,6 @@ public class sob_ShootConfig : ScriptableObject
                     Random.Range(-bloom.z, bloom.z)
                 ),
                 Mathf.Clamp01(shootTime / maxSpreadTime));
-            spread.Normalize();
         }
         else if (enm_recoilType == enm_recoilType.Texture)
         {

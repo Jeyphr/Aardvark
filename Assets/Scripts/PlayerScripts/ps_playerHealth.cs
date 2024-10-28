@@ -11,8 +11,13 @@ public class ps_playerHealth : MonoBehaviour, gs_IDamagable
 
     [SerializeField] private ps_UIHandler _UIhandler;
 
-    private void Awake() { updateHealth(); }
+    public event gs_IDamagable.TakeDamageEvent OnTakeDamage;
+    public event gs_IDamagable.Die OnDie;
 
+    public float health { get => _health; set => _health = value; }
+    public float maxHealth { get => _maxHealth; set => _maxHealth = value; }
+
+    private void Awake() { updateHealth(); }
     private void updateHealth()
     {
         if (_health > _maxHealth) { _health = _maxHealth;}
@@ -20,7 +25,6 @@ public class ps_playerHealth : MonoBehaviour, gs_IDamagable
         _UIhandler.VisHealth = _health;
         _UIhandler.updateUI();
     }
-
     public void takeDamage(float val)
     {
         _health -= val;

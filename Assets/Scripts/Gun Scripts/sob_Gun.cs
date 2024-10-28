@@ -11,7 +11,7 @@ public class sob_Gun : ScriptableObject
     [SerializeField] public GameObject modelPrefab;
     [SerializeField] public sob_ShootConfig shootConfig;
     [SerializeField] public sob_TrailConfig trailConfig;
-    //[SerializeField] public ps_UIHandler uiHandler;
+    [SerializeField] public ps_UIHandler uiHandler;
 
     [Header("Statistics")]
     [SerializeField] public enm_GunType gunType;
@@ -44,6 +44,7 @@ public class sob_Gun : ScriptableObject
 
         //UI BULLSHIT
 
+
         //add gunmodel
         _model = Instantiate(modelPrefab);
         _model.transform.SetParent(Parent, false);
@@ -66,7 +67,6 @@ public class sob_Gun : ScriptableObject
         trail.widthCurve = trailConfig.widthCurve;
         trail.time = trailConfig.lifespan;
         trail.minVertexDistance = trailConfig.minVertexDist;
-
         trail.emitting = false;
         trail.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
 
@@ -75,8 +75,6 @@ public class sob_Gun : ScriptableObject
 
     public void Shoot()
     {
-     
-        /*
         if (Time.time - _lastShootTime - shootConfig.fireRate > Time.deltaTime)
         {
             float lastDuration = Mathf.Clamp(
@@ -87,18 +85,17 @@ public class sob_Gun : ScriptableObject
             float lerpTime = (shootConfig.recoilRecoveryTime - (Time.time - _stopShootingTime) / shootConfig.recoilRecoveryTime);
             _initClickTime = Time.time - Mathf.Lerp(0, lastDuration, Mathf.Clamp01(lerpTime));
         }
-        */
-
-        if((Time.time > shootConfig.fireRate + _lastShootTime))
+        if((Time.time > shootConfig.fireRate + _lastShootTime) && ammo > 0)
         {
             _lastShootTime = Time.time;
-            Debug.Log("Greater Number" + Time.time +"\tLesser Number" + _lastShootTime + shootConfig.fireRate);
             _shootSystem.Play();
             ammo--;
 
             //bloom
-            Vector3 spreadAmount = shootConfig.getSpread();//Time.time - _initClickTime);
-            Vector3 shootDirection = _model.transform.parent.forward + spreadAmount;
+            Vector3 spreadAmount = shootConfig.getSpread(Time.time - _initClickTime);
+            _model.transform.forward += _model.transform.TransformDirection(spreadAmount);
+
+            Vector3 shootDirection = _model.transform.parent.forward;
 
             //where the magic happens
             if(Physics.Raycast(
@@ -125,9 +122,13 @@ public class sob_Gun : ScriptableObject
             }
         }
     }
-
     public void Tick(bool wantsToShoot)
     {
+        _model.transform.localRotation = Quaternion.Lerp(
+            _model.transform.localRotation,
+            Quaternion.Euler(rotation),
+            Time.deltaTime * shootConfig.recoilRecoveryTime
+            );
         if (wantsToShoot)
         {
             _lastFrameWantedToShoot = true;
@@ -139,7 +140,6 @@ public class sob_Gun : ScriptableObject
             _lastFrameWantedToShoot = false;
         }
     }
-
     private IEnumerator PlayTrail(Vector3 start, Vector3 end, RaycastHit hit)
     {
         //Activates the trail and pulls it from the pool
@@ -158,6 +158,16 @@ public class sob_Gun : ScriptableObject
             yield return null;
         }
         instance.transform.position = end;
+
+        // THIS IS WHERE THE MAGIC HAPPENS!
+        if (hit.collider != null)
+        {
+            if (hit.collider.TryGetComponent(out gs_IDamagable damagable))
+            {
+                damagable.takeDamage(damage);
+            }
+        }
+
         yield return new WaitForSeconds(trailConfig.lifespan);
         yield return null;
 
@@ -166,6 +176,4 @@ public class sob_Gun : ScriptableObject
         instance.gameObject.SetActive(false);
         _trailPool.Release(instance);
     }
-
-
 }

@@ -13,7 +13,7 @@ public class ps_Inventory : MonoBehaviour
     public sob_Gun heldGun;
 
 
-    private void Start()
+    private void Awake()
     {
         sob_Gun gun = lst_guns.Find(gun => gun.gunType == _gun);
         if (gun == null)

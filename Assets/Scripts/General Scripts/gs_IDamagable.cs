@@ -5,5 +5,14 @@ using UnityEngine;
 
 public interface gs_IDamagable
 {
-    void takeDamage(float val);
+    public float health { get; set; }
+    public float maxHealth { get; set; }
+
+    public delegate void TakeDamageEvent(int Damage);
+    public event TakeDamageEvent OnTakeDamage;
+
+    public delegate void Die();
+    public event Die OnDie;
+
+    public void takeDamage(float damage);
 }

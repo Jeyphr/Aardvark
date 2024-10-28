@@ -10,15 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 984735bc2ede3e44e8b1830a893a5a17, type: 3}
-  m_Name: devShotgun
+  m_Name: devAR
   m_EditorClassIdentifier: 
-  modelPrefab: {fileID: 4478720147300340467, guid: d39d43f955d0eb348b4284382e31d0fb, type: 3}
-  shootConfig: {fileID: 11400000, guid: e1702ad822d277246aaf906b47de39db, type: 2}
-  trailConfig: {fileID: 11400000, guid: 49aad06b51a46894b9a16c0c8494cb5c, type: 2}
+  modelPrefab: {fileID: 4372917497749486637, guid: b376613036ba5fc4e83cb07c4cd87762, type: 3}
+  shootConfig: {fileID: 11400000, guid: 0f35ee745345b4b4bb071d891ee12c25, type: 2}
+  trailConfig: {fileID: 11400000, guid: 7b805db153b8baa478899340f82bfd33, type: 2}
+  uiHandler: {fileID: 0}
   gunType: 0
-  gunName: shotty
+  gunName: guzzle
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0}
   damage: 10
-  ammo: 20
-  maxammo: 20
+  ammo: 9639
+  maxammo: 100
