@@ -20,6 +20,6 @@ MonoBehaviour:
   gunName: guzzle
   position: {x: 0, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0}
-  damage: 10
-  ammo: 9639
-  maxammo: 100
+  damage: 7
+  ammo: 158
+  maxammo: 250

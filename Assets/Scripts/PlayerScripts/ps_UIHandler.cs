@@ -23,16 +23,29 @@ public class ps_UIHandler : MonoBehaviour
     [SerializeField] Material mat_normal;
     [SerializeField] Material mat_critical;
 
+    [SerializeField] ps_Inventory inventory;
+
     
 
     public void Awake()
     {
         {
+            _visAmmo = inventory.heldGun.ammo;
+            _visMaxAmmo = inventory.heldGun.maxammo;
+            
             updateUI();
         }
     }
+
+    public void Update()
+    {
+        updateUI();
+    }
     public void updateUI()
     {
+        _visAmmo = inventory.heldGun.ammo;
+        _visMaxAmmo = inventory.heldGun.maxammo;
+
         updateHealth();
         updateAmmo();
         updateRounds();
@@ -60,6 +73,18 @@ public class ps_UIHandler : MonoBehaviour
     private void updateAmmo()
     {
         setAmmo(bar_Ammo, _visAmmo);
+        if (_visAmmo < (_visMaxAmmo / 3))
+        {
+            bar_Ammo.material = mat_critical;
+            aText.color = mat_critical.color;
+            aText.fontSize = 20;
+        }
+        else
+        {
+            bar_Ammo.material = mat_normal;
+            aText.color = mat_normal.color;
+            aText.fontSize = 10;
+        }
     }
     private void updateRounds()
     {
@@ -71,20 +96,19 @@ public class ps_UIHandler : MonoBehaviour
     }
     private void updatePerks()
     {
-        Debug.Log("Updating Perks!");
     }
     #endregion
     #region STAT SETTERS
     private void setHealth(Image bar, float val)
     {
         _visHealth = val;
-        bar.fillAmount = _visHealth / 100;
+        bar.fillAmount = _visHealth / _visMaxHealth;
         hText.text = _visHealth.ToString();
     }
     private void setAmmo(Image bar, int val)
     {
         _visAmmo = val;
-        bar.fillAmount = _visAmmo / 100;
+        bar.fillAmount = _visAmmo / _visMaxAmmo;
         aText.text = _visAmmo.ToString();
     }
     private void setRound(int val)

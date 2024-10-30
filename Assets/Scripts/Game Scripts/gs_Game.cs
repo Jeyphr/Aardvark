@@ -5,19 +5,18 @@ using UnityEngine;
 public class gs_Game : MonoBehaviour
 {
     [Header("Object References")]
+    [SerializeField] private gs_waveSpawning waveSpawner;
+
     [Header("Statistics")]
-    [SerializeField] private int    numWave         = 1;
-    [SerializeField] private int    maxWaves        = 3;
     [SerializeField] private int    numRound        = 1;
     [SerializeField] private int    maxRounds       = 10;
     [SerializeField] private float  intermission    = 10f;
-    
 
 
-    [Header("NME's")]
-    [SerializeField] private GameObject[]   light_NMEs;
-    [SerializeField] private GameObject[]   heavy_NMEs;
-    [SerializeField] private Transform[]    spawnpoints;
+    private void Awake()
+    {
+        waveSpawner.nextWave();
+    }
 
     /*
      
