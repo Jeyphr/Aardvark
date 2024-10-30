@@ -9,7 +9,7 @@ public class gs_pathing : MonoBehaviour
 {
     [Header("Game Objects")]
     [SerializeField] public Transform Target;
-    private NavMeshAgent Agent;
+    [SerializeField] public NavMeshAgent Agent;
 
     [Header("Statistics")]
     [SerializeField] public float updateSpeed = 0.1f;
@@ -23,6 +23,7 @@ public class gs_pathing : MonoBehaviour
     private void Awake()
     {
         Agent = GetComponent<NavMeshAgent>();
+        Target = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     private IEnumerator FollowTarget()

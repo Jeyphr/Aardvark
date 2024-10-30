@@ -9,44 +9,42 @@ public class gs_waveSpawning : MonoBehaviour
     [SerializeField] public Transform[] spawnpoints;
 
     [Header("Statistics")]
+    [SerializeField] public int currentWave;
     [SerializeField] public int waveCount;
     [SerializeField] public float cost = 3;
     [SerializeField] public float costInc = 1.1f;
 
-    private void Start()
+    private void Awake()
     {
         nextWave();
     }
     private void increaseCost()
     {
-        if (waveCount % 10 == 0)
-        {
-            decreaseCost();
-        }
         cost *= costInc;
     }
 
-    private void decreaseCost() { cost /= (costInc * 1.2f); }
-
     public void nextWave()
     {
-        waveCount++;
+        currentWave++;
         increaseCost();
         spawnWave();
     }
 
     private void spawnWave()
     {
-        float nmeWeight = 1;
+        float nmeWeight;
         float remainingCost = cost;
 
+       
+        
         while (remainingCost > 0)
         {
+            Debug.Log(remainingCost);
             foreach (var nme in NMEs)
             {
                 nmeWeight = nme.GetComponent<zs_NME>().NmeWeight;
                 Debug.Log(nmeWeight);
-                if (nmeWeight >= remainingCost)
+                if (nmeWeight <= remainingCost)
                 {
                     remainingCost -= nmeWeight;
                     summonNME(nme);
@@ -58,7 +56,6 @@ public class gs_waveSpawning : MonoBehaviour
                 }
             }
         }
-        
     }
 
     private void summonNME(GameObject nme)

@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 2214119876166095303}
   - component: {fileID: 1830381680910176984}
   - component: {fileID: 3021735203277106683}
-  - component: {fileID: 8882576530278548392}
   - component: {fileID: 766890340681469481}
   - component: {fileID: 3828329633746809218}
-  - component: {fileID: 5700358013872676408}
+  - component: {fileID: 7411376161873755438}
+  - component: {fileID: 8882576530278548392}
   m_Layer: 0
   m_Name: Zed_v1
   m_TagString: Untagged
@@ -111,20 +111,6 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &8882576530278548392
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 450236348253022905}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49661457d7d1acd46a37342ec2521557, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Target: {fileID: 0}
-  updateSpeed: 0.1
 --- !u!136 &766890340681469481
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -162,7 +148,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxHealth: 100
   _health: 100
---- !u!114 &5700358013872676408
+--- !u!114 &7411376161873755438
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -175,6 +161,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nmeWeight: 1
+--- !u!114 &8882576530278548392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 450236348253022905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49661457d7d1acd46a37342ec2521557, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Target: {fileID: 7397493863715281599, guid: e758b221eb746ab4da7dd37d414f4a4c, type: 3}
+  updateSpeed: 0.1
 --- !u!1 &1340414277505613436
 GameObject:
   m_ObjectHideFlags: 0
