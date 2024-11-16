@@ -1072,6 +1072,7 @@ GameObject:
   - component: {fileID: 8069000286434529824}
   - component: {fileID: 4075868665475094363}
   - component: {fileID: 3726730638814550903}
+  - component: {fileID: 6166474575778656023}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1188,6 +1189,27 @@ MonoBehaviour:
   lst_guns:
   - {fileID: 11400000, guid: 40cc35418838da24ea27227d5fd4c6a6, type: 2}
   heldGun: {fileID: 11400000, guid: 40cc35418838da24ea27227d5fd4c6a6, type: 2}
+--- !u!95 &6166474575778656023
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3220454812482091653}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 8864e34c13405f34c8ccbbb0950e0f3d, type: 2}
+  m_Controller: {fileID: 9100000, guid: b11710007decb964e9476207c3238574, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3698926354712406861
 GameObject:
   m_ObjectHideFlags: 0
@@ -2812,7 +2834,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 19f3b031157a84b409fb371fc09a68fe, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1
+      value: -0.954
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 19f3b031157a84b409fb371fc09a68fe, type: 3}
       propertyPath: m_LocalPosition.z

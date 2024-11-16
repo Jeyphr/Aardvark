@@ -8,6 +8,9 @@ public class ps_Inventory : MonoBehaviour
     [SerializeField] private enm_GunType _gun;
     [SerializeField] private Transform _gunHolder;
     [SerializeField] private List<sob_Gun> lst_guns;
+    //[SerializeField] private Animator playerAnimator;
+
+    private bool _usingPrimary;
 
     [Header("Runtime Filled")]
     public sob_Gun heldGun;

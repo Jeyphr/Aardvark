@@ -11,7 +11,6 @@ public class sob_Gun : ScriptableObject
     [SerializeField] public GameObject modelPrefab;
     [SerializeField] public sob_ShootConfig shootConfig;
     [SerializeField] public sob_TrailConfig trailConfig;
-    [SerializeField] public ps_UIHandler uiHandler;
 
     [Header("Statistics")]
     [SerializeField] public enm_GunType gunType;
@@ -31,8 +30,11 @@ public class sob_Gun : ScriptableObject
     private float _initClickTime;
     private float _stopShootingTime;
     private bool _lastFrameWantedToShoot;
+    private bool _rechambering;
     private ParticleSystem _shootSystem;
     private ObjectPool <TrailRenderer> _trailPool;
+
+    
 
     //FUNCTIONS
     public void Spawn(Transform Parent, MonoBehaviour ActiveMonoBehavior)
@@ -85,7 +87,7 @@ public class sob_Gun : ScriptableObject
             float lerpTime = (shootConfig.recoilRecoveryTime - (Time.time - _stopShootingTime) / shootConfig.recoilRecoveryTime);
             _initClickTime = Time.time - Mathf.Lerp(0, lastDuration, Mathf.Clamp01(lerpTime));
         }
-        if((Time.time > shootConfig.fireRate + _lastShootTime) && ammo > 0)
+        if((Time.time > shootConfig.fireRate + _lastShootTime))
         {
             _lastShootTime = Time.time;
             _shootSystem.Play();
@@ -131,8 +133,12 @@ public class sob_Gun : ScriptableObject
             );
         if (wantsToShoot)
         {
-            _lastFrameWantedToShoot = true;
-            Shoot();
+            if (ammo > 0)
+            {
+                _lastFrameWantedToShoot = true;
+                Shoot();
+            }
+            
         }
         else if (!wantsToShoot && _lastFrameWantedToShoot)
         {

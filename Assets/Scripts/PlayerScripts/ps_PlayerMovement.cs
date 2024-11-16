@@ -35,6 +35,8 @@ public class ps_PlayerMovement : MonoBehaviour
     [SerializeField] public Transform bonkCheck;
     [SerializeField] public float bonkDistance = 0.2f;
 
+    private bool isShooting = false;
+
 
 
 
@@ -125,8 +127,12 @@ public class ps_PlayerMovement : MonoBehaviour
     {
         if (inventory.heldGun != null)
         {
-            inventory.heldGun.Tick(Input.GetKey(KeyCode.Mouse0));   
+            inventory.heldGun.Tick(isClickingM1());
         }
+    }
+    private bool isClickingM1()
+    {
+        return Input.GetKey(KeyCode.Mouse0);
     }
     #endregion
 

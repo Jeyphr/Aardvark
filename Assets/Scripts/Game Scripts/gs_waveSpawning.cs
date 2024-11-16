@@ -42,7 +42,7 @@ public class gs_waveSpawning : MonoBehaviour
             Debug.Log(remainingCost);
             foreach (var nme in NMEs)
             {
-                nmeWeight = nme.GetComponent<zs_NME>().NmeWeight;
+                nmeWeight = 1;//nme.GetComponent<sob_NME>().Weight;
                 Debug.Log(nmeWeight);
                 if (nmeWeight <= remainingCost)
                 {

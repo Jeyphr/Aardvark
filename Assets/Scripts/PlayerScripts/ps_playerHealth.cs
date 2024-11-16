@@ -14,8 +14,8 @@ public class ps_playerHealth : MonoBehaviour, gs_IDamagable
     public event gs_IDamagable.TakeDamageEvent OnTakeDamage;
     public event gs_IDamagable.Die OnDie;
 
-    public float health { get => _health; set => _health = value; }
-    public float maxHealth { get => _maxHealth; set => _maxHealth = value; }
+    public float Health { get => _health; set => _health = value; }
+    public float MaxHealth { get => _maxHealth; set => _maxHealth = value; }
 
     private void Awake() { updateHealth(); }
     private void updateHealth()

@@ -16,7 +16,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 9
   fireRate: 0.1
-  recoilRecoveryTime: 4
+  recoilRecoveryTime: 10
   maxSpreadTime: 1
   bloom: {x: 0.5, y: 0.5, z: 0.5}
-  enm_recoilType: 0
+  enm_recoilType: 1

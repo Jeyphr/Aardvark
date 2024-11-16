@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/maps/Main Menu.unity
+    guid: e0bbcd389a815514fa9c4897cd6f6733
+  - enabled: 1
+    path: Assets/maps/Backrooms.unity
+    guid: 17bed4a97a1ace742996635ee18aed6d
   m_configObjects: {}

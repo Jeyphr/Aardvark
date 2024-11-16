@@ -5041,6 +5041,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 9cecb3ef8ced2d14fa49d5fa92142662, type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: 8864e34c13405f34c8ccbbb0950e0f3d, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 9cecb3ef8ced2d14fa49d5fa92142662, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: b11710007decb964e9476207c3238574, type: 2}
     - target: {fileID: 7485701023291317024, guid: 9cecb3ef8ced2d14fa49d5fa92142662, type: 3}
       propertyPath: m_Layer
       value: 5
