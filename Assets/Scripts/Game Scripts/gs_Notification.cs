@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 
 public class gs_Notification : MonoBehaviour
 {
     [Header("Statistics")]
-    [SerializeField] private string notifText   = "XXXX";
-    [SerializeField] private float  fillAmount  = 1.0f;
+    [SerializeField] private string notifText   = "Howdy!";
     [SerializeField] private float  decayTime   = 5.0f;
 
     [Header("Object References")]
@@ -16,6 +16,7 @@ public class gs_Notification : MonoBehaviour
     [SerializeField] private GameObject notif;
     [SerializeField] private GameObject terminal;
     [SerializeField] private GameObject NotificationGO;
+    [SerializeField] private TextMeshPro textMeshPro;
 
     //vars
     private bool showing = false;
@@ -28,23 +29,20 @@ public class gs_Notification : MonoBehaviour
     {
         //Text text = notif.GetComponent<Text>();
         //text.text = notifText;
-        
-
-        StartCoroutine(decay());
+        showing = true;
     }
 
-    IEnumerator decay()
+    private void Update()
     {
-        bar.fillAmount = fillAmount;
-        while (fillAmount >= 0.1)
-        {
-            fillAmount = Mathf.Clamp01(decayTime * Time.deltaTime);
-            Debug.Log(fillAmount);
-            yield return null;
-        }
-        deleteNotif();
-    }
+        textMeshPro.text = NotifText;
+        float elapsedTime = decayTime;
 
+        while (elapsedTime >= 0)
+        {
+            bar.fillAmount = elapsedTime -= Time.deltaTime;
+            elapsedTime = elapsedTime -= Time.deltaTime;
+        }
+    }
 
     public void createNotif()
     {

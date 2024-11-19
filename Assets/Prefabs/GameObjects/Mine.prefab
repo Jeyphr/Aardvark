@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1698308017477056783}
   - component: {fileID: 2940646099606187702}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 1134463874689765666}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -39,12 +39,12 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1134463874689765666}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Intensity: 2
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 5649334759697321113}
   - component: {fileID: 3656440399550651958}
   - component: {fileID: 5206467613768952160}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Kaboom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5013,9 +5013,9 @@ GameObject:
   - component: {fileID: 4747740602076747110}
   - component: {fileID: 8520446569023282274}
   - component: {fileID: 2668584162025831560}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Mine
-  m_TagString: Untagged
+  m_TagString: Mine
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5029,7 +5029,7 @@ Transform:
   m_GameObject: {fileID: 5392871431415313558}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.458853, y: 1.625, z: -3.8575745}
+  m_LocalPosition: {x: 13.02165, y: 6.054736, z: 5.431595}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5084,8 +5084,8 @@ BoxCollider:
   m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 0.25578552, z: 1}
-  m_Center: {x: 0, y: 0.12514815, z: 0}
+  m_Size: {x: 1, y: 0.5, z: 1}
+  m_Center: {x: 0, y: 0.25, z: 0}
 --- !u!114 &2668584162025831560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5098,7 +5098,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1794da30399c3474683250752b36933d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _particleSystem: {fileID: 0}
+  model: {fileID: 4465119944323054408}
+  particleSystem: {fileID: 3656440399550651958}
   damage: 20
 --- !u!1001 &3546060511247205913
 PrefabInstance:
@@ -5148,9 +5149,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8553417584757162366, guid: 964e3aa6a45616b4486580d73aaf9a03, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -5896588202177574662, guid: 964e3aa6a45616b4486580d73aaf9a03, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 964e3aa6a45616b4486580d73aaf9a03, type: 3}
       propertyPath: m_Name
       value: mine
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 964e3aa6a45616b4486580d73aaf9a03, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5160,5 +5173,10 @@ PrefabInstance:
 --- !u!4 &3944196982906774002 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 964e3aa6a45616b4486580d73aaf9a03, type: 3}
+  m_PrefabInstance: {fileID: 3546060511247205913}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4465119944323054408 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 964e3aa6a45616b4486580d73aaf9a03, type: 3}
   m_PrefabInstance: {fileID: 3546060511247205913}
   m_PrefabAsset: {fileID: 0}

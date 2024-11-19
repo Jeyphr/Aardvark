@@ -6,24 +6,33 @@ using UnityEngine;
 public class zs_Mine : MonoBehaviour
 {
     [Header("Object References")]
-    [SerializeField] private ParticleSystem _particleSystem;
+    [SerializeField] private GameObject         model;
+    [SerializeField] private ParticleSystem     particleSystem;
 
     [Header("Statistics")]
     [SerializeField] float damage = 20f;
 
-
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision hit)
     {
-        Debug.Log(collision.gameObject.name);
-        if (collision.gameObject.tag == "Player")
+        Debug.Log(hit.gameObject.name);
+        if (hit.gameObject.tag == "Player")
         {
-            explode();
+            StartCoroutine(playExplosion());
         }
+    }
+
+    IEnumerator playExplosion()
+    {
+        model.SetActive(false);
+        float duration = particleSystem.duration;
+        particleSystem.Play();
+        yield return new WaitForSeconds(duration);
+        explode();
     }
 
     private void explode()
     {
-        _particleSystem.Play();
+        particleSystem.Play();
         Destroy(this.gameObject);
     }
 }
