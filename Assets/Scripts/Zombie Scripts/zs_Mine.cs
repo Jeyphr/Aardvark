@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class zs_Mine : MonoBehaviour
 {
@@ -33,6 +34,5 @@ public class zs_Mine : MonoBehaviour
     private void explode()
     {
         particleSystem.Play();
-        Destroy(this.gameObject);
     }
 }

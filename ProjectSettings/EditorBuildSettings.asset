@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/maps/Backrooms.unity
     guid: 17bed4a97a1ace742996635ee18aed6d
+  - enabled: 1
+    path: Assets/maps/Easy Street.unity
+    guid: 38d83b617bb4cc14faa64bb197f37209
   m_configObjects: {}

@@ -10,33 +10,35 @@ public class sob_NME : MonoBehaviour, gs_IDamagable
 {
     [Header("Statistics")]
     [SerializeField] private string _name;
-    [SerializeField] private float _maxHealth;
-    [SerializeField] private float _health;
-    [SerializeField] private float _walkSpeed;
-    [SerializeField] private float _attackCooldown;
-    [SerializeField] private float _weight;
-    
+    [SerializeField] private float  _maxHealth;
+    [SerializeField] private float  _health;
+    [SerializeField] private float  _walkSpeed;
+    [SerializeField] private float  _attackCooldown;
+    [SerializeField] private float  _weight;
+    [SerializeField] private bool   isAttacking;
+
     [Header("Object References")]
     [SerializeField] private NavMeshAgent agent;
     [SerializeField] private zs_uiHandler uiHandler;
     [SerializeField] private GameObject mine;
+    [SerializeField] private Transform attackSpot;
 
     //vars
     const float updateSpeed = 0.1f;
     private Transform target;
     private ObjectPool <GameObject> minepool;
     
+    
 
     #region INSTANTIATING METHODS
     private void Awake()
     {
         agent   = GetComponent<NavMeshAgent>();
-        target  = GameObject.FindGameObjectWithTag("Player").transform;
+        target  = GameObject.FindGameObjectWithTag("BASE").transform;
     }
     private void Start()
     {
         StartCoroutine(FollowTarget());
-        StartCoroutine(placeBeeper(mine));
     }
     #endregion
     #region NAVIGATION METHODS
@@ -48,22 +50,6 @@ public class sob_NME : MonoBehaviour, gs_IDamagable
             agent.SetDestination(target.position);
             yield return Wait;
         }
-    }
-    #endregion
-    #region ATTACK METHODS
-    private IEnumerator placeBeeper(GameObject beeper)
-    {
-        WaitForSeconds Wait = new WaitForSeconds(_attackCooldown);
-        while (enabled)
-        {
-            Instantiate(beeper);
-            beeper.transform.position = agent.transform.position;
-            yield return Wait;
-        }
-    }
-    private bool lineOfSight()
-    {
-        return true;
     }
     #endregion
     #region GETTERS AND SETTERS
@@ -78,6 +64,14 @@ public class sob_NME : MonoBehaviour, gs_IDamagable
     public event gs_IDamagable.TakeDamageEvent OnTakeDamage;
     public event gs_IDamagable.Die OnDie;
     #endregion
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "BASE")
+        {
+            takeDamage(Health);
+        }
+    }
 
     public void takeDamage(float damage)
     {

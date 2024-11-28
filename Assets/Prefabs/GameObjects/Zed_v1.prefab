@@ -29,13 +29,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 450236348253022905}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.5, z: -2.672}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3268833882219421526}
   - {fileID: 1298774059903856362}
+  - {fileID: 6947921605966427897}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2214119876166095303
@@ -124,9 +125,46 @@ MonoBehaviour:
   _walkSpeed: 1
   _attackCooldown: 3
   _weight: 2
+  isAttacking: 0
   agent: {fileID: 3021735203277106683}
   uiHandler: {fileID: 7761473550245174326}
   mine: {fileID: 5392871431415313558, guid: 7ccda744edfc0ac43b27a09b3ecdb782, type: 3}
+  attackSpot: {fileID: 6947921605966427897}
+--- !u!1 &3908433838922681058
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6947921605966427897}
+  m_Layer: 5
+  m_Name: attackSpot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &6947921605966427897
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3908433838922681058}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2516331667938042454}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 1}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &4507204135577992782
 GameObject:
   m_ObjectHideFlags: 0
@@ -529,7 +567,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e0e44bf73f35df741bc742f91f9da139, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1
+      value: -0.96875
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: e0e44bf73f35df741bc742f91f9da139, type: 3}
       propertyPath: m_LocalPosition.z

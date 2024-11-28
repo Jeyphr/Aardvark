@@ -16,7 +16,7 @@ public class gs_loading : MonoBehaviour
     [SerializeField] private int selectedLevel = 1;
 
     //private shit
-    private string[] maps = { "mainMenu", "Backrooms"};
+    private string[] maps = { "mainMenu", "Easy Street"};
 
 
     private void Awake()
