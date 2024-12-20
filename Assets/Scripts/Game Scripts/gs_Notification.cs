@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -8,15 +9,13 @@ using UnityEngine.UI;
 public class gs_Notification : MonoBehaviour
 {
     [Header("Statistics")]
-    [SerializeField] private string notifText   = "Howdy!";
-    [SerializeField] private float  decayTime   = 5.0f;
+    [SerializeField] private string notifText   = "Unset";
+    [SerializeField] private float  decayPercent   = 0.1f;
 
     [Header("Object References")]
     [SerializeField] private Image      bar;
     [SerializeField] private GameObject notif;
-    [SerializeField] private GameObject terminal;
-    [SerializeField] private GameObject NotificationGO;
-    [SerializeField] private TextMeshPro textMeshPro;
+    [SerializeField] private TMP_Text   textMeshPro;
 
     //vars
     private bool showing = false;
@@ -27,29 +26,34 @@ public class gs_Notification : MonoBehaviour
 
     private void Awake()
     {
-        //Text text = notif.GetComponent<Text>();
-        //text.text = notifText;
+        textMeshPro.text = NotifText;
+        bar.fillAmount = 1;
         showing = true;
     }
 
-    private void Update()
+     void Update()
     {
-        textMeshPro.text = NotifText;
-        float elapsedTime = decayTime;
-
-        while (elapsedTime >= 0)
+        if (showing)
         {
-            bar.fillAmount = elapsedTime -= Time.deltaTime;
-            elapsedTime = elapsedTime -= Time.deltaTime;
+            if(bar.fillAmount > 0)
+            {
+                bar.fillAmount -= decayPercent*Time.deltaTime;
+            }
+            else
+            {
+                showing = false;
+                deleteNotif();
+            }
         }
     }
 
-    public void createNotif()
+    public void updateText(string noteText)
     {
-        Instantiate(notif, terminal.transform);
+        textMeshPro.text = noteText;
     }
+
     public void deleteNotif()
     {
-        Destroy(NotificationGO);
+        Destroy(notif);
     }
 }

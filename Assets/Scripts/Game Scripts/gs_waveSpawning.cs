@@ -8,6 +8,9 @@ public class gs_waveSpawning : MonoBehaviour
     [SerializeField] public GameObject[] NMEs;
     [SerializeField] public Transform[] spawnpoints;
 
+    [Header("Player")]
+    [SerializeField] public ps_UIHandler uiHandler;
+
     [Header("Statistics")]
     [SerializeField] public int currentWave;
     [SerializeField] public int waveCount;
@@ -30,12 +33,18 @@ public class gs_waveSpawning : MonoBehaviour
         spawnWave();
     }
 
+    public void updateUI()
+    {
+        uiHandler.VisRound = currentWave;
+        uiHandler.updateUI();
+    }
+
     private void spawnWave()
     {
         float nmeWeight;
         float remainingCost = cost;
 
-       
+       updateUI();
         
         while (remainingCost > 0)
         {

@@ -5,7 +5,8 @@ using UnityEngine;
 public class zs_NMEHealth : MonoBehaviour, gs_IDamagable
 {
     [Header("Object References")]
-    [SerializeField] private zs_uiHandler uiHandler;
+    [SerializeField] private zs_uiHandler zedUI;
+    [SerializeField] private ps_UIHandler playerUI;
 
     [Header("Statistics")]
     [SerializeField] private float _maxHealth = 100;
@@ -26,7 +27,8 @@ public class zs_NMEHealth : MonoBehaviour, gs_IDamagable
             _health = 0;
             Destroy(this.gameObject);
         }
-        uiHandler.updateUI();
+        zedUI.updateUI();
+        playerUI.addPoints();
     }
 
     //newmeth

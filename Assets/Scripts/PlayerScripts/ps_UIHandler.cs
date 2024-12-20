@@ -16,6 +16,7 @@ public class ps_UIHandler : MonoBehaviour
     private int _visPoints = 0;
     private int _visRound = 0;
 
+
     [Space]
     [Header("Object References")]
     [SerializeField] Image bar_Health, bar_Ammo;
@@ -51,6 +52,11 @@ public class ps_UIHandler : MonoBehaviour
         updateRounds();
         updatePointss();
         updatePerks();
+    }
+    public void addPoints()
+    {
+        _visPoints += 10;
+        pText.text += "$" + _visPoints.ToString();
     }
 
     #region UPDATING STATEMENTS

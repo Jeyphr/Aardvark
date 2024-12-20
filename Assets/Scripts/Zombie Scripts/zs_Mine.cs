@@ -15,7 +15,6 @@ public class zs_Mine : MonoBehaviour
 
     private void OnCollisionEnter(Collision hit)
     {
-        Debug.Log(hit.gameObject.name);
         if (hit.gameObject.tag == "Player")
         {
             StartCoroutine(playExplosion());

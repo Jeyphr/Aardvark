@@ -5,19 +5,35 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Runtime.CompilerServices;
+using UnityEngine.Playables;
+using UnityEditor.UI;
+using UnityEngine.UIElements;
+using System;
 
 public class gs_loading : MonoBehaviour
 {
-    [SerializeField] private Canvas[]   arr_Screens;
-    [SerializeField] Image              bar;
+    [Header("Page Managers")]
+    [SerializeField] private Canvas[] arr_Screens;
+    [SerializeField] private int currentPage = 0;
+    [SerializeField] private int selectedLevel = 2;
+
+    [Header("Web")]
+    [SerializeField] private gs_web web;
+
+
+    [Header("Fields")]
+    [SerializeField] private UnityEngine.UI.Image bar;
+    [SerializeField] private GameObject gsnote;
+    [SerializeField] private Transform terminal;
+    [SerializeField] public InputField loginUser, loginPass;
 
     //vars
-    [SerializeField] private int currentPage = 0;
-    [SerializeField] private int selectedLevel = 1;
+    private int errcount = 0;
+    private string localUsername, localPassword;
+
 
     //private shit
     private string[] maps = { "mainMenu", "Easy Street"};
-
 
     private void Awake()
     {
@@ -41,6 +57,12 @@ public class gs_loading : MonoBehaviour
                 showPage(arr_Screens[i]);
             }
         }
+    }
+
+    public void setPage(int pageIndex)
+    {
+        currentPage = pageIndex;
+        pageManager();
     }
     private void showPage(Canvas page)
     {
@@ -73,6 +95,10 @@ public class gs_loading : MonoBehaviour
         pageManager();
         StartCoroutine(LoadLevelASync(selectedLevel));
     }
+    public void btn_login()
+    {
+        login();
+    }
     public void btn_toLog()
     {
         currentPage = 1;
@@ -88,6 +114,41 @@ public class gs_loading : MonoBehaviour
         currentPage = 2;
         pageManager();
     }
+    #endregion
+    #region AUTHENTICATORS
+    private bool checkTextField(InputField field)
+    {
+        string trimmedText = field.text.Trim();
+        if (field.text != "")
+        {
+            return true;
+        }
+        return false;
+    }
+
+    private void login()
+    {
+
+        if(checkTextField(loginUser) && checkTextField(loginPass))
+        {
+            pingTerminal("Attempting to Login...");
+            web.loggy(loginUser.text, loginPass.text);
+        }
+        else
+        {
+            pingTerminal("Missing Credentials");
+        }
+    }
+
+    #endregion
+    #region NOTIFICATION BULLSHIT
+    private void pingTerminal(string noteText)
+    {
+        Debug.Log("Terminal:\t" + noteText);
+        GameObject notes = Instantiate(gsnote,terminal,false);
+        notes.GetComponentInChildren<gs_Notification>().updateText(noteText);
+    }
+
     #endregion
 
 
